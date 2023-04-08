@@ -4,7 +4,6 @@ import { tareas } from '../tareas'
 const useForm = (initalState) => {
 
   const [form, setForm] = useState(initalState)
-  const [duties, setDuties] = useState(localStorage.getItem('tareas'));
 
 
     const handleChange = (e) =>{
@@ -13,14 +12,12 @@ const useForm = (initalState) => {
             ...form,
         [name]: value,
         })
-        console.log(tareas)
     }
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        tareas.push(form)
         console.log(tareas);
-        //setDuties(tareas)
+        tareas.push(form)
         localStorage.setItem('tareas', JSON.stringify(tareas))
     }
 
