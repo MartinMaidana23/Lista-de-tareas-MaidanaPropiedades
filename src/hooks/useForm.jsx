@@ -33,6 +33,7 @@ const useForm = (initalState) => {
         const filtrado = todos.filter((todo)=>todo.id!==id)
         localStorage.setItem('tareas', JSON.stringify(filtrado))
         setTodos(filtrado)
+        location.reload()
     }
 
     
