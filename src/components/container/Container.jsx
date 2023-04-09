@@ -7,14 +7,16 @@ import Provider, { LocalContext } from '../../context/Provider'
 
 const Container = () => {
 
-    const initalForm = {
-        tarea:'',
-        comentario:'',
-        id:''
+    const initialForm = {
+        tarea:"",
+        comentario:"",
+        id: Date.now(),
     }
 
-    const {handleChange,handleSubmit, todos} = useForm(initalForm)
+    const {handleChange,handleSubmit, todos,setTodos, deleteTarea} = useForm(initialForm)
 
+    
+    
 
     return (
         <div className="App d-flex flex-column align-items-center">
@@ -25,8 +27,8 @@ const Container = () => {
         />
 
         {
-            todos.map((tarea, index)=>(
-                <Card key={index} {...tarea}/>
+            todos.map(({tarea, comentario, id}, index)=>(
+                <Card key={index} tarea={tarea} comentario={comentario} onClick={()=> deleteTarea(id)} />
             ))
         }
         
