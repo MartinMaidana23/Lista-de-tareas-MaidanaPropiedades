@@ -1,17 +1,11 @@
 import React, { useEffect } from 'react'
 import useForm from '../../hooks/useForm'
 
-const Form = () => {
+const Form = (props) => {
+    const {handleChange, handleSubmit} = props
 
-    const initalForm = {
-        tarea:'',
-        comentario:''
-    }
-    const {handleChange,handleSubmit} = useForm(initalForm)
-
-    
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='d-flex flex-column justify-content-center align-items-center m-5'>
         <input type="text" name='tarea' onChange={handleChange} />
         <input type="text" name='comentario' onChange={handleChange} />
         <button className='btn btn-primary'>Agregar Tarea</button>
