@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState,} from 'react'
+import { useContext, useEffect, useRef, useState,} from 'react'
 import { tareas } from '../tareas'
 import { LocalContext } from '../context/Provider'
 
@@ -6,6 +6,7 @@ const useForm = (initalState) => {
 
     const [form, setForm] = useState(initalState)
     const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('tareas')) || [])
+
 
     useEffect(() => {
         const tareasGuardadas = JSON.parse(localStorage.getItem('tareas'))
@@ -24,12 +25,13 @@ const useForm = (initalState) => {
             ...form,
             [name]: value,
         })
+
         
     }
 
     const deleteTarea = (id) =>{
         const filtrado = todos.filter((todo)=>todo.id!==id)
-        console.log(filtrado);
+        localStorage.setItem('tareas', JSON.stringify(filtrado))
         setTodos(filtrado)
     }
 
@@ -38,6 +40,7 @@ const useForm = (initalState) => {
         e.preventDefault()
         tareas.push(form)
         setTodos(tareas)
+        location.reload()
     }
     
     
