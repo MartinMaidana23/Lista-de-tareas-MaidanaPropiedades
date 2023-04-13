@@ -1,22 +1,12 @@
-import { useContext, useEffect, useRef, useState,} from 'react'
+import {useEffect, useState,} from 'react'
 import { tareas } from '../tareas'
-import { LocalContext } from '../context/Provider'
+import { useContext } from 'react'
+import { TodoContext } from '../context/TodoProvider'
 
-const useForm = (initalState) => {
+const useForm = (initialForm) => {
+    const [form, setForm] = useState(initialForm)
 
-    const [form, setForm] = useState(initalState)
-    const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('tareas')) || [])
-
-
-    useEffect(() => {
-        const tareasGuardadas = JSON.parse(localStorage.getItem('tareas'))
-        setTodos(tareasGuardadas)
-    }, [])
-    
-    useEffect(()=>{
-        localStorage.setItem('tareas', JSON.stringify(todos))
-    },[todos])
-
+    const {todos, setTodos} = useContext(TodoContext)
 
     
     const handleChange = (e) =>{
@@ -25,15 +15,9 @@ const useForm = (initalState) => {
             ...form,
             [name]: value,
         })
+        console.log(form);
 
         
-    }
-
-    const deleteTarea = (id) =>{
-        const filtrado = todos.filter((todo)=>todo.id!==id)
-        localStorage.setItem('tareas', JSON.stringify(filtrado))
-        setTodos(filtrado)
-        location.reload()
     }
 
     
@@ -49,11 +33,7 @@ const useForm = (initalState) => {
   return {
     form,
     handleChange,
-    handleSubmit,
-    todos,
-    setTodos,
-    deleteTarea
-    
+    handleSubmit
   }
 }
 

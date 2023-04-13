@@ -1,10 +1,13 @@
 import React from 'react'
 import Container from './components/container/Container'
+import TodoProvider from './context/TodoProvider'
 
 function App() {
 
   return (
-    <Container/>
+    <TodoProvider>
+      <Container/>
+    </TodoProvider>
   )
 }
 

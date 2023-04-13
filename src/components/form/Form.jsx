@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import useForm from '../../hooks/useForm'
 
 const Form = (props) => {
-    const {handleChange, handleSubmit} = props
+
+    const {initialForm} = props
+    const {handleChange, handleSubmit} = useForm(initialForm)
 
   return (
     <form onSubmit={handleSubmit} className='d-flex flex-column justify-content-center align-items-center m-5'>
