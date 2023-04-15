@@ -1,31 +1,24 @@
-import {useEffect, useState,} from 'react'
-import { tareas } from '../tareas'
-import { useContext } from 'react'
-import { TodoContext } from '../context/TodoProvider'
+import {useState} from 'react'
+import useCrud from './useCrud'
 
 const useForm = (initialForm) => {
     const [form, setForm] = useState(initialForm)
+    const [inputValue, setInputValue] = useState()
+    const {postTask} = useCrud()
 
-    const {todos, setTodos} = useContext(TodoContext)
-
-    
     const handleChange = (e) =>{
         const {name, value} = e.target 
         setForm({
-            ...form,
-            [name]: value,
-        })
-        console.log(form);
-
-        
+          ...form,
+          [name]: value,
+      })
     }
-
-    
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault()
-        tareas.push(form)
-        setTodos(tareas)
-        location.reload()
+        await postTask(form)
+        setInputValue('')
+        setForm(initialForm)
+        setInputValue(undefined)
     }
     
     
@@ -33,7 +26,8 @@ const useForm = (initialForm) => {
   return {
     form,
     handleChange,
-    handleSubmit
+    handleSubmit,
+    inputValue
   }
 }
 

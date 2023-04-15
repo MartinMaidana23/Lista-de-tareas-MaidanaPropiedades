@@ -1,17 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Form from '../form/Form'
-import Card from '../card/Card'
-import { TodoContext } from '../../context/TodoProvider'
+import useCrud from '../../hooks/useCrud'
+import CardContainer from './CardContainer'
 
 const Container = () => {
+
+    const {getAllTasks} = useCrud()
 
     const initialForm = {
         tarea:"",
         comentario:"",
-        id: Date.now(),
+        persona:['martin','guadi','jime','guadi']
     }
 
-    const {todos, deleteTarea} = useContext(TodoContext)
+   useEffect(() => {
+     getAllTasks()
+   }, [])
+   
+    
 
     return (
         
@@ -20,12 +26,8 @@ const Container = () => {
             <Form
                 initialForm={initialForm}
             />
-
-            {
-                todos.map(({tarea, comentario, id}, index)=>(
-                    <Card key={index} tarea={tarea} comentario={comentario} onClick={()=> deleteTarea(id)} />
-                ))
-            }
+            <CardContainer/>
+            
             
         </div>
     )
