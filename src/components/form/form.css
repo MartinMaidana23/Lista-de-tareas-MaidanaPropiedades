@@ -1,0 +1,56 @@
+form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+}
+.input-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    color: #ca8730;
+    width: 15rem;
+    margin: 5px;
+    padding: 15px;
+    border: 2px solid transparent;
+    font-size: 1.5rem;
+    transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+}
+  
+label {
+    display: block;
+    margin: 5px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #c5c5c599;
+    transition: color .3s cubic-bezier(.25,.01,.25,1) 0s;
+}
+
+select{
+    border-radius: 15px;
+    width: 15rem;
+    margin: 5px;
+    padding: 15px;
+}
+
+option{
+    font-size: 1.2rem;
+}
+
+input:hover, input:focus, .input-group:hover .input {
+    outline: none;
+    border-color: #fa8704;
+}
+
+.input-group:hover label, input:focus {
+    color: #fa8704;
+}
+
+
+

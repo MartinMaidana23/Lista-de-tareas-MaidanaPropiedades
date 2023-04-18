@@ -2,8 +2,10 @@ import {useState} from 'react'
 import useCrud from './useCrud'
 
 const useForm = (initialForm) => {
-    const [form, setForm] = useState(initialForm)
-    const [inputValue, setInputValue] = useState()
+    const [form, setForm] = useState({
+      ...initialForm,
+      persona:''
+    })
     const {postTask} = useCrud()
 
     const handleChange = (e) =>{
@@ -16,9 +18,12 @@ const useForm = (initialForm) => {
     const handleSubmit = async (e)=>{
         e.preventDefault()
         await postTask(form)
-        setInputValue('')
-        setForm(initialForm)
-        setInputValue(undefined)
+        console.log(form);
+        setForm({
+          ...initialForm,
+          persona:''
+        })
+        e.target.reset()
     }
     
     
@@ -27,7 +32,6 @@ const useForm = (initialForm) => {
     form,
     handleChange,
     handleSubmit,
-    inputValue
   }
 }
 
