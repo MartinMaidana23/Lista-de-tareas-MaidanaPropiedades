@@ -25,7 +25,7 @@ const Form = (props) => {
       <select name="persona" value={form.persona} onChange={handleChange}>
         <option value="">Selecciona un nombre</option>
         {arrayPersonas?.map((persona, index)=>(
-            <option value={persona.value}  key={index} >{persona.label}  </option>
+            <option value={persona.value} key={index} >{persona.label}  </option>
         ))}
       </select>
 
