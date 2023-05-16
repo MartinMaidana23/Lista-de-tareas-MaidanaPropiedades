@@ -20,7 +20,7 @@ const Card = (props) => {
     <div className={`card ${nombres[persona]}`}>
         <h2 className="">{tarea}</h2>
         <p className="">{comentario}</p>
-        <button className="btn"  onClick={()=>handleDelete(id)}> Marcar como hecho <ImCheckboxChecked/> </button>
+        {<button className="btn"  onClick={()=>handleDelete(id)}><ImCheckboxChecked/></button>}
     </div>
   )
 }

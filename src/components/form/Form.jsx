@@ -13,14 +13,16 @@ const Form = (props) => {
 
   return (
     <form onSubmit={handleSubmit} >
-      {Object.entries(initialForm).map(([key], index)=>(
-        <Input
-        type={'text'}
-        name={key}
-        onChange={handleChange}
-        key={index}
-        />
-      ))}
+      <div className="input-group">
+        {Object.entries(initialForm).map(([key], index)=>(
+          <Input
+          type={'text'}
+          name={key}
+          onChange={handleChange}
+          key={index}
+          />
+        ))}
+      </div>
 
       <select name="persona" value={form.persona} onChange={handleChange}>
         <option value="">Selecciona un nombre</option>
