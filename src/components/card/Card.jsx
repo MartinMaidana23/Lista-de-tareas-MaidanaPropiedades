@@ -1,5 +1,5 @@
 import React from 'react'
-import {ImCheckboxChecked} from 'react-icons/im'
+import {MdDoneOutline} from 'react-icons/md'
 import './card.css'
 
 const Card = (props) => {
@@ -20,7 +20,7 @@ const Card = (props) => {
     <div className={`card ${nombres[persona]}`}>
         <h2 className="">{tarea}</h2>
         <p className="">{comentario}</p>
-        {<button className="btn"  onClick={()=>handleDelete(id)}><ImCheckboxChecked/></button>}
+        {<button className="btn"  onClick={()=>handleDelete(id)}><MdDoneOutline/></button>}
     </div>
   )
 }

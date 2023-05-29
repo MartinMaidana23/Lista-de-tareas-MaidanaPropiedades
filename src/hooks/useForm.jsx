@@ -19,8 +19,7 @@ const useForm = (initialForm) => {
         e.preventDefault()
 
         if (Object.values(form).every(value => value === '')) {
-          ;
-          return; 
+          return;
         }
         await postTask(form)
         setForm({
