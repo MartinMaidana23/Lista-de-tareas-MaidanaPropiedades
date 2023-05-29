@@ -10,3 +10,14 @@
     padding: 2px;
     width: 50vw;
 }
+
+.filtros{
+    display: flex;
+    flex-direction: row;
+}
+
+.filter{
+    padding: 5px;
+    margin: 5px;
+    color: #fff;
+}

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import Form from '../form/Form'
 import useCrud from '../../hooks/useCrud'
 import CardContainer from './CardContainer'
+import logo from '../../assets/logo.png'
 import './container.css'
 
 const Container = () => {
@@ -29,7 +30,10 @@ const Container = () => {
     return (
         
         <div className="App">
-            <h1>Lista de Tareas</h1>
+            <div className="header">
+                <h1>Lista de Tareas</h1>
+                <img src={logo} alt="logo" className="logo"/>
+            </div>
             <Form
                 initialForm={initialForm}
                 arrayPersonas={personas}

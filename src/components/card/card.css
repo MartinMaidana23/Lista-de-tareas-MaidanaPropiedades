@@ -1,6 +1,8 @@
 .card {
     width: 50vw;
-    height: 100px;
+    height: 80px;
+    padding: 5px;
+    font-size: 15px;
     background-color: #25273D;
     border-radius: 1px;
     cursor: pointer;

@@ -6,6 +6,16 @@ body{
     
 }
 
+img{
+    width: 150px;
+}
+
+.header{
+    display: flex;
+    gap: 10px;
+}
+
+
 .App{
     display: flex;
     flex-wrap: wrap;
