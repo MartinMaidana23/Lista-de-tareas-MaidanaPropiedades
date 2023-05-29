@@ -17,8 +17,12 @@ const useForm = (initialForm) => {
     }
     const handleSubmit = async (e)=>{
         e.preventDefault()
+
+        if (Object.values(form).every(value => value === '')) {
+          ;
+          return; 
+        }
         await postTask(form)
-        console.log(form);
         setForm({
           ...initialForm,
           persona:''

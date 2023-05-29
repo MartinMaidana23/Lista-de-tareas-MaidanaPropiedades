@@ -15,7 +15,7 @@ const CardContainer = () => {
     <div className='cardContainer'>
 
       <div className="filtros">
-        {filters.map(({name, value}, index)=>(<button key={index} onClick={()=>handleFilter(value)} className={`${value} btn filter`}>{name}</button>))}
+        {filters.map(({name, value}, index)=>(<button key={index} onClick={()=>handleFilter(value)} className={`${value} btn ${filter === value ? 'active' : ''} filter`}>{name}</button>))}
       </div>
         {
             todos && todos.filter(({persona})=> persona === filter || filter === 'all').map(({tarea, comentario, id, persona}, index)=>(
