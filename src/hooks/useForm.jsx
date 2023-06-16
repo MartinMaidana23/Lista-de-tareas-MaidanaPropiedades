@@ -1,32 +1,51 @@
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import useCrud from './useCrud'
+import { TodoContext } from '../context/TodoProvider'
 
-const useForm = (initialForm) => {
+const useForm = (initialForm, edit,id,) => {
     const [form, setForm] = useState({
       ...initialForm,
       persona:''
     })
-    const {postTask} = useCrud()
+
+    const {postTask, editTask} = useCrud()
 
     const handleChange = (e) =>{
         const {name, value} = e.target 
-        setForm({
-          ...form,
-          [name]: value,
-      })
+        
+        setForm({...form,[name]: value,})
+        console.log(form);
+          
     }
     const handleSubmit = async (e)=>{
-        e.preventDefault()
+        try {
+          e.preventDefault()
 
-        if (Object.values(form).every(value => value === '')) {
-          return;
+          await postTask(form)
+          setForm({
+            ...initialForm,
+            persona:''
+          })
+          e.target.reset()
+        } catch (error) {
+          console.log(error);
         }
-        await postTask(form)
+    }
+
+    const handleUpdate = async (e)=>{
+      try {
+        e.preventDefault()
+        console.log('update');
+
+        await editTask(id, form)
         setForm({
           ...initialForm,
           persona:''
         })
         e.target.reset()
+      } catch (error) {
+        console.log(error);
+      }
     }
     
     
@@ -35,6 +54,7 @@ const useForm = (initialForm) => {
     form,
     handleChange,
     handleSubmit,
+    handleUpdate
   }
 }
 

@@ -8,7 +8,6 @@ import useFilter from '../../hooks/useFilter'
 
 const CardContainer = () => {
     const {todos} = useContext(TodoContext)
-    const {deleteTask} = useCrud()
     const {handleFilter, filter} = useFilter()
 
   return (
@@ -19,7 +18,7 @@ const CardContainer = () => {
       </div>
         {
             todos && todos.filter(({persona})=> persona === filter || filter === 'all').map(({tarea, comentario, id, persona}, index)=>(
-              <Card key={index} tarea={tarea} comentario={comentario} onClick={()=> deleteTask(id)} persona={persona} />
+              <Card key={index} tarea={tarea} comentario={comentario}  persona={persona} id={id} />
           ))
             
         }
