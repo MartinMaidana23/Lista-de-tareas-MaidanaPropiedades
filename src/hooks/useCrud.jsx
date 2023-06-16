@@ -5,6 +5,7 @@ import { TodoContext } from '../context/TodoProvider'
 const useCrud = () => {
     const {todos, setTodos} = useContext(TodoContext)
 
+
     const getAllTasks = async () => {
         try {
             const response = await axiosClient.get()
@@ -29,11 +30,16 @@ const useCrud = () => {
         
         try {
             
-            const index = todos.findIndex(todo => todo.id === id)
-            console.log(todos);
-            todos.splice(index, 1, editedObj)
-            console.log(todos);
-            await axiosClient.put(`/${id}`, todos).then(response => console.log(response))
+            const todo = todos.find(todo => todo.id === id)
+
+            const editedTodo = {
+                id: todo.id,
+                agente: todo.agente,
+                tarea: editedObj.tarea,
+                comentario: editedObj.comentario,
+                persona: editedObj.persona
+            }
+            await axiosClient.put(`/${id}`, editedTodo)
             getAllTasks()
         } catch (error) {
             console.log(error);

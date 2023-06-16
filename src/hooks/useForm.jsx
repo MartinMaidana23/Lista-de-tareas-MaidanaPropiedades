@@ -2,7 +2,7 @@ import {useContext, useState} from 'react'
 import useCrud from './useCrud'
 import { TodoContext } from '../context/TodoProvider'
 
-const useForm = (initialForm, edit,id,) => {
+const useForm = (initialForm,id,handleEdit) => {
     const [form, setForm] = useState({
       ...initialForm,
       persona:''
@@ -14,7 +14,6 @@ const useForm = (initialForm, edit,id,) => {
         const {name, value} = e.target 
         
         setForm({...form,[name]: value,})
-        console.log(form);
           
     }
     const handleSubmit = async (e)=>{
@@ -35,13 +34,9 @@ const useForm = (initialForm, edit,id,) => {
     const handleUpdate = async (e)=>{
       try {
         e.preventDefault()
-        console.log('update');
 
         await editTask(id, form)
-        setForm({
-          ...initialForm,
-          persona:''
-        })
+        handleEdit()
         e.target.reset()
       } catch (error) {
         console.log(error);

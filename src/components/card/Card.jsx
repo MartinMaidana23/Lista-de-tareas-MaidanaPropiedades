@@ -1,5 +1,6 @@
 import React, {useState } from 'react'
 import {MdDoneOutline, MdModeEdit} from 'react-icons/md'
+import { IoCloseSharp } from 'react-icons/io5'
 import './card.css'
 import Form from '../form/Form'
 import useCrud from '../../hooks/useCrud'
@@ -8,6 +9,7 @@ const Card = (props) => {
     const {tarea, comentario, onClick, id, persona} = props
     const [edit,setEdit] = useState(false)
     const {deleteTask} = useCrud()
+    const {getTask} = useCrud()
 
 
 
@@ -21,15 +23,16 @@ const Card = (props) => {
     const initialForm = {
       tarea,
       comentario,
-  }
+    }
 
 
-  const personas = [
+
+    const personas = [
       {label:'Martin', value:'martin'},
       {label:'Guadalupe', value:'guadalupe'},
       {label:'Jimena', value:'jimena'},
       {label:'Miguel', value:'miguel'},
-  ]
+    ]
 
       
     const handleDelete = (id) =>{
@@ -57,11 +60,13 @@ const Card = (props) => {
                   initialForm={initialForm}
                   arrayPersonas={personas}
                   edit={edit}
+                  handleEdit={handleEdit}
                   task={tarea}
                   comment={comentario}
                   person={persona}
                   id={id}
             />
+
       }
     </div>
 

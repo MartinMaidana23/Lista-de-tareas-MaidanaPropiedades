@@ -2,16 +2,16 @@ import React, { useContext } from 'react'
 import useForm from '../../hooks/useForm'
 import Input from '../input/Input'
 import {MdDoneOutline} from 'react-icons/md'
+import {IoCloseSharp} from 'react-icons/io5'
 import './form.css'
-import { TodoContext } from '../../context/TodoProvider'
 
 const Form = (props) => {
 
-    const {initialForm, arrayPersonas, edit, task, comment, person, id} = props
+    const {initialForm, arrayPersonas, edit, person, id, handleEdit} = props
     const { handleChange, handleSubmit, form, handleUpdate } = useForm(
       initialForm,
-      edit,
-      id
+      id,
+      handleEdit
     );
   
     
@@ -38,7 +38,7 @@ const Form = (props) => {
         ))}
       </div>
 
-      <select name="persona" value={form.persona} onChange={handleChange}>
+      <select name="persona" value={form.persona || person} onChange={handleChange}>
         <option value="">Selecciona un nombre</option>
         {arrayPersonas?.map((persona, index)=>(
            
@@ -48,10 +48,16 @@ const Form = (props) => {
       </select>
 
         { !edit
-         ? 
-         <button className='btn btn-primary'>Agregar Tarea</button>
-         :
-         <button className='btn btn-primary'><MdDoneOutline/></button> }
+          ? 
+          <button className='btn btn-primary'>Agregar Tarea</button>
+
+          :
+
+          <>
+            <button className='btn btn-primary editBtn'><MdDoneOutline/></button>
+            <button className='btn btn-primary editBtn' onClick={handleEdit}><IoCloseSharp/></button>
+          </>
+        }
     </form>
   )
 }
